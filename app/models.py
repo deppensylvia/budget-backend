@@ -15,3 +15,16 @@ class Expense(Base):
 
     def __repr__(self):
         return f"<Expense(id={self.id}, description='{self.item}', amount={self.cost}, date={self.purchase_date})>"
+    
+class Income(Base):
+    __tablename__ = "Incomes"
+
+    id = Column(String, primary_key=True, index=True)
+    name = Column(String)
+    source = Column(String)
+    amount = Column(Float)
+    received_date = Column(DateTime)
+    notes = Column(String, nullable=True)
+
+    def __repr__(self):
+        return f"<Income(id={self.id}, name='{self.name}', source='{self.source}', amount={self.amount}, date={self.received_date})>"

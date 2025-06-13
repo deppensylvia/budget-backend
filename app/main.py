@@ -12,12 +12,12 @@ app = FastAPI()
 #Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], #http://localhost:4200"],
+    allow_origins=["http://localhost:4200"],
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
 )
 
-app.include_router(expenses.router, prefix="/api", tags=["expenses"])
+app.include_router(expenses.router, prefix="/api", tags=["expenses", "incomes"])
 
 @app.get("/")
 def root():

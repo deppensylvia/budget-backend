@@ -3,7 +3,6 @@ from datetime import date
 
 class ExpenseCreate(BaseModel):
     id: str
-
     item: str
     budget_category: str
     cost: float
@@ -13,6 +12,20 @@ class ExpenseCreate(BaseModel):
     notes: str = None
 
 class ExpenseResponse(ExpenseCreate):
+    id: str
+
+    class Config:
+        from_attributes = True
+
+class IncomeCreate(BaseModel):
+    id: str
+    name: str
+    amount: float
+    received_date: date 
+    source: str
+    notes: str = None
+
+class IncomeResponse(IncomeCreate):
     id: str
 
     class Config:
