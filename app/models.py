@@ -11,6 +11,8 @@ class Expense(Base):
     show_in_budget = Column(Boolean, default=True)
     purchase_date = Column(DateTime)
     purchase_source = Column(String)
+    is_group_expense = Column(Boolean, default=False)
+    children_expenses = Column(String, nullable=True)  # JSON string to store child expenses
     notes = Column(String, nullable=True)
 
     def __repr__(self):
