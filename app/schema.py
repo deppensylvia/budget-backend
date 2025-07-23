@@ -3,8 +3,8 @@ from datetime import date
 
 class ExpenseCreate(BaseModel):
     id: str
-    item: str
-    budget_category: str
+    name: str
+    category: str
     cost: float
     show_in_budget: bool = True
     purchase_date: date 
