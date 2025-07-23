@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from .. import database
@@ -14,15 +14,15 @@ def get_db():
     finally:
         db.close()
 
-@router.get("/expenses", response_model=list[schema.ExpenseResponse])
+@router.get("/expenses", response_model=list[schema.ExpenseResponse], status_code=200)
 def get_expenses(db: Session = Depends(get_db)):
     return db.query(models.Expense).all()
 
-@router.get("/expenses/{expense_id}", response_model=schema.ExpenseResponse)
+@router.get("/expenses/{expense_id}", response_model=schema.ExpenseResponse, status_code=200)
 def get_expense(expense_id: str, db: Session = Depends(get_db)):
     db_expense = db.query(models.Expense).filter(models.Expense.id == expense_id).first()
     if not db_expense:
-        return {"error": "Expense not found"}
+        raise HTTPException(status_code=404, detail="Expense not found")
     return db_expense
 
 @router.post("/expenses", response_model=schema.ExpenseResponse, status_code=201)
@@ -33,7 +33,7 @@ def create_expense(expense: schema.ExpenseCreate, db: Session = Depends(get_db))
     db.refresh(db_expense)
     return db_expense
 
-@router.put("/expenses/{expense_id}", response_model=schema.ExpenseResponse)
+@router.put("/expenses/{expense_id}", response_model=schema.ExpenseResponse, status_code=200)
 def update_expense(expense_id: str, expense: schema.ExpenseCreate, db: Session = Depends(get_db)):
     db_expense = db.query(models.Expense).filter(models.Expense.id == expense_id).first()
     if not db_expense:
