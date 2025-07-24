@@ -43,7 +43,8 @@ Part 3
 1. End of Month Review
 2. End of Year Review
 
-docker-compose up --build
-docker-compose up -d
-docker compose up --build --watch
-uvicorn app.main:app --reload
+uvicorn app.main:app --reload #run this first
+docker-compose up --build #build this after
+
+docker-compose up -d #(local postgres)
+
