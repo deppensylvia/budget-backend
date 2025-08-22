@@ -44,7 +44,7 @@ Part 3
 2. End of Year Review
 
 uvicorn app.main:app --reload #run this first
-docker-compose up --build #build this after
+docker compose up --build #build this after
 
-docker-compose up -d #(local postgres)
+docker compose up -d #(local postgres)
 

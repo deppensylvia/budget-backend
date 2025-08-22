@@ -1,0 +1,24 @@
+[MASTER]
+ignore=venv
+init-hook='import sys; sys.path.append("backend")'
+
+[MESSAGES CONTROL]
+disable=
+    C0114,  # missing-module-docstring
+    C0115,  # missing-class-docstring
+    C0116,  # missing-function-docstring
+    R0903,  # too-few-public-methods
+
+[FORMAT]
+max-line-length=88
+
+[DESIGN]
+max-args=5
+max-locals=15
+max-returns=6
+max-branches=12
+max-statements=50
+
+[REPORTS]
+output-format=colorized
+reports=no
